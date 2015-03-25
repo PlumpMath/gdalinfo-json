@@ -53,7 +53,7 @@
         [datum-name  (second (regexp-match #px"DATUM\\[\"(.*?)\"," str))]
         [spheroid-name (second (regexp-match #px"SPHEROID\\[\"(.*?)\"," str))]
         [spheroid-semi-major-axis (second (regexp-match #px"SPHEROID\\[\".*?\",(\\d+\\.*\\d*)" str))]
-        [spheroid-inverse-fytening (second (regexp-match #px"SPHEROID\\[\".*?\",\\d+\\.*\\d*,(\\d+\\.*\\d*)," str))]
+        [spheroid-inverse-flattening (second (regexp-match #px"SPHEROID\\[\".*?\",\\d+\\.*\\d*,(\\d+\\.*\\d*)," str))]
         [spheroid-authority-name
           (second (regexp-match #px"SPHEROID\\[\".*?\",\\d+\\.*\\d*,\\d+\\.*\\d*,\\s*AUTHORITY\\[\"(\\S+)\","
                                 str))]
