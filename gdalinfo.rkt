@@ -22,22 +22,22 @@
    unit-value
    authority-name
    authority-value
-   origin-long
-   origin-lat
+   origin-x
+   origin-y
    pixel-size-width
    pixel-size-height
    metadata
    img-structure-metadata
-   upper-left-long
-   upper-left-lat
-   lower-left-long
-   lower-left-lat
-   upper-right-long
-   upper-right-lat
-   lower-right-long
-   lower-right-lat
-   center-long
-   center-lat
+   upper-left-x
+   upper-left-y
+   lower-left-x
+   lower-left-y
+   upper-right-x
+   upper-right-y
+   lower-right-x
+   lower-right-y
+   center-x
+   center-y
    band-1-block
    color-type
    color-interp)
@@ -52,7 +52,7 @@
         [datum-name  (second (regexp-match #px"DATUM\\[\"(.*?)\"," str))]
         [spheroid-name (second (regexp-match #px"SPHEROID\\[\"(.*?)\"," str))]
         [spheroid-semi-major-axis (second (regexp-match #px"SPHEROID\\[\".*?\",(\\d+\\.*\\d*)" str))]
-        [spheroid-inverse-flattening (second (regexp-match #px"SPHEROID\\[\".*?\",\\d+\\.*\\d*,(\\d+\\.*\\d*)," str))]
+        [spheroid-inverse-fytening (second (regexp-match #px"SPHEROID\\[\".*?\",\\d+\\.*\\d*,(\\d+\\.*\\d*)," str))]
         [spheroid-authority-name
           (second (regexp-match #px"SPHEROID\\[\".*?\",\\d+\\.*\\d*,\\d+\\.*\\d*,\\s*AUTHORITY\\[\"(\\S+)\","
                                 str))]
@@ -67,32 +67,32 @@
           (second (regexp-match #px"UNIT\\[\"\\S+\",\\d+\\.\\d+\\],\\s*AUTHORITY\\[\"(\\S+)\"," str))]
         [authority-value
           (second (regexp-match #px"UNIT\\[\"\\S+\",\\d+\\.\\d+\\],\\s*AUTHORITY\\[\"\\S+\",\"(\\S+)\"" str))]
-        [origin-long (second (regexp-match #px"Origin = \\((-{0,1}\\d+\\.*\\d*)," str))]
-        [origin-lat (second (regexp-match #px"Origin = \\(-{0,1}\\d+\\.*\\d*,(-{0,1}\\d+\\.*\\d*)" str))]
+        [origin-x (second (regexp-match #px"Origin = \\((-{0,1}\\d+\\.*\\d*)," str))]
+        [origin-y (second (regexp-match #px"Origin = \\(-{0,1}\\d+\\.*\\d*,(-{0,1}\\d+\\.*\\d*)" str))]
         [pixel-size-width (second (regexp-match #px"Pixel Size = \\((-{0,1}\\d+\\.*\\d*)," str))]
         [pixel-size-height (second (regexp-match #px"Pixel Size = \\(-{0,1}\\d+\\.*\\d*,(-{0,1}\\d+\\.*\\d*)" str))]
         [metadata (second (regexp-match #px"Metadata:\\s*(\\S+)\\s*Image Structure Metadata:" str))]
         [img-structure-metadata
           (second (regexp-match #px"Metadata:\\s*\\S+\\s*Image Structure Metadata:\\s*(\\S+)\\s*Corner" str))]
-        [upper-left-long
+        [upper-left-x
           (second (regexp-match #px"Upper Left\\s+\\(\\s*(-{0,1}\\d+\\.*\\d*)," str))]
-        [upper-left-lat
+        [upper-left-y
           (second (regexp-match #px"Upper Left\\s+\\(\\s*-{0,1}\\d+\\.*\\d*,\\s*(-{0,1}\\d+\\.*\\d*)" str))]
-        [lower-left-long
+        [lower-left-x
           (second (regexp-match #px"Lower Left\\s+\\(\\s*(-{0,1}\\d+\\.*\\d*)," str))]
-        [lower-left-lat
+        [lower-left-y
           (second (regexp-match #px"Lower Left\\s+\\(\\s*-{0,1}\\d+\\.*\\d*,\\s*(-{0,1}\\d+\\.*\\d*)" str))]
-        [upper-right-long
+        [upper-right-x
           (second (regexp-match #px"Upper Right\\s+\\(\\s*(-{0,1}\\d+\\.*\\d*)," str))]
-        [upper-right-lat
+        [upper-right-y
           (second (regexp-match #px"Upper Right\\s+\\(\\s*-{0,1}\\d+\\.*\\d*,\\s*(-{0,1}\\d+\\.*\\d*)" str))]
-        [lower-right-long
+        [lower-right-x
           (second (regexp-match #px"Lower Right\\s+\\(\\s*(-{0,1}\\d+\\.*\\d*)," str))]
-        [lower-right-lat
+        [lower-right-y
           (second (regexp-match #px"Lower Right\\s+\\(\\s*-{0,1}\\d+\\.*\\d*,\\s*(-{0,1}\\d+\\.*\\d*)" str))]
-        [center-long
+        [center-x
           (second (regexp-match #px"Center\\s+\\(\\s*(-{0,1}\\d+\\.*\\d*)," str))]
-        [center-lat
+        [center-y
           (second (regexp-match #px"Center\\s+\\(\\s*-{0,1}\\d+\\.*\\d*,\\s*(-{0,1}\\d+\\.*\\d*)" str))]
         [band-1-block
           (second (regexp-match #px"Band 1 Block=(\\S+)\\s*" str))]
@@ -117,22 +117,22 @@
       unit-value
       authority-name
       authority-value
-      origin-long
-      origin-lat
+      origin-x
+      origin-y
       pixel-size-width
       pixel-size-height
       metadata
       img-structure-metadata
-      upper-left-long
-      upper-left-lat
-      lower-left-long
-      lower-left-lat
-      upper-right-long
-      upper-right-lat
-      lower-right-long
-      lower-right-lat
-      center-long
-      center-lat
+      upper-left-x
+      upper-left-y
+      lower-left-x
+      lower-left-y
+      upper-right-x
+      upper-right-y
+      lower-right-x
+      lower-right-y
+      center-x
+      center-y
       band-1-block
       color-type
       color-interp)))
@@ -154,22 +154,22 @@
           'unit-value (gdalinfo-unit-value info)
           'authority-name (gdalinfo-authority-name info)
           'authority-value (gdalinfo-authority-value info)
-          'origin-long (gdalinfo-origin-long info)
-          'origin-lat (gdalinfo-origin-lat info)
+          'origin-x (gdalinfo-origin-x info)
+          'origin-y (gdalinfo-origin-y info)
           'pixel-size-width (gdalinfo-pixel-size-width info)
           'pixel-size-height (gdalinfo-pixel-size-height info)
           'metadata (gdalinfo-metadata info)
           'img-structure-metadata (gdalinfo-metadata info)
-          'upper-left-long (gdalinfo-upper-left-long info)
-          'upper-left-lat (gdalinfo-upper-left-lat info)
-          'lower-left-long (gdalinfo-lower-left-long info)
-          'lower-left-lat (gdalinfo-lower-left-lat info)
-          'upper-right-long (gdalinfo-upper-right-long info)
-          'upper-right-lat (gdalinfo-upper-right-lat info)
-          'lower-right-long (gdalinfo-lower-right-long info)
-          'lower-right-lat (gdalinfo-lower-right-lat info)
-          'center-long (gdalinfo-center-long info)
-          'center-lat (gdalinfo-center-lat info)
+          'upper-left-x (gdalinfo-upper-left-x info)
+          'upper-left-y (gdalinfo-upper-left-y info)
+          'lower-left-x (gdalinfo-lower-left-x info)
+          'lower-left-y (gdalinfo-lower-left-y info)
+          'upper-right-x (gdalinfo-upper-right-x info)
+          'upper-right-y (gdalinfo-upper-right-y info)
+          'lower-right-x (gdalinfo-lower-right-x info)
+          'lower-right-y (gdalinfo-lower-right-y info)
+          'center-x (gdalinfo-center-x info)
+          'center-y (gdalinfo-center-y info)
           'band-1-block (gdalinfo-band-1-block info)
           'color-type (gdalinfo-color-type info)
           'color-interp (gdalinfo-color-interp info)))
