@@ -2,7 +2,7 @@
 
 (provide string->gdalinfo
          gdalinfo->jsexpr
-         gdalinfo)
+         (struct-out gdalinfo))
 
 (require test-engine/racket-tests)
 
