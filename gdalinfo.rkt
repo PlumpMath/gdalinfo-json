@@ -1,7 +1,8 @@
 #lang racket
 
 (provide string->gdalinfo
-         gdalinfo->jsexpr)
+         gdalinfo->jsexpr
+         gdalinfo)
 
 (require test-engine/racket-tests)
 
