@@ -1,3 +1,3 @@
 #lang info
 
-(define collection "gdalinfo")
+(define collection "muninn")
